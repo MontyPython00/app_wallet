@@ -1,0 +1,18 @@
+{% extends 'wallets/layout.html' %}
+
+{% block content %}
+
+	<h1>
+		Welcome, {{request.user.username}}
+	</h1>
+	{% for wallet in wallets %}
+
+		<h3><a href="{{wallet.get_absolute_url}}">{{wallet}}</a></h3>
+
+	{% empty %}
+
+	No wallets, would you like to create one? <a href="{% url 'wallets:create' %}">Click here</a>
+
+	{% endfor %}	
+
+{% endblock %}

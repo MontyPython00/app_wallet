@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>AppWallet </title>
+
+	</head>
+	<body>
+		<style>
+			body {
+				margin:0;
+
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				background-color: #333333;
+				}
+			li {
+				float: left;
+			}
+
+			li a {
+			  display: block;
+			  color:white;
+			  text-align: center;
+			  padding: 16px;
+			  text-decoration: none;
+			}
+
+		</style>
+		<ul>
+			<li> 
+				<a href="{% url 'accounts:create' %}"> Sign Up </a>
+			</li>
+			<li>
+				<a href="{% url 'accounts:login' %}"> Login </a>
+			</li>
+			{% if request.user.is_authenticated %} 
+			<li>
+				<a href="{% url 'accounts:logout' %}"> Logout </a> 
+			</li>
+			{% endif %}
+			<li>
+				<a href="{% url 'wallets:wallets' %}"> Wallets </a>
+			</li>
+			<li> 
+				<a href="{% url 'wallets:create' %}"> New Wallet </a>
+			</li>
+		</ul>
+		{% block main %}
+
+
+
+		{% endblock %}
+
+	</body>
+</html>
