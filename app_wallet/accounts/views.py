@@ -27,7 +27,7 @@ def login_view(request):
 			user_data = form.cleaned_data
 			user = authenticate(request, username=user_data.get('username'), password=user_data.get('password'))
 			login(request, user)
-			return redirect(reverse('wallets:create'))
+			return redirect(reverse('wallets:wallets'))
 	
 	else:
 		form = LoginForm(request)
