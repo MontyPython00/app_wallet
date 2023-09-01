@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from wallets.models import Wallet
 from wallets.forms import CreateWalletForm
@@ -23,6 +24,10 @@ def wallet_view(request, wallet_id):
 	context = {
 		'wallet': wallet
 	} 
+	print(wallet)
+	if request.POST.get('delete') != None:
+		wallet.delete()
+		return redirect(reverse('wallets:wallets'))
 
 	return render(request, 'wallets/wallet.html', context=context)
 
@@ -32,13 +37,15 @@ def create_view(request):
 
 	
 	if form.is_valid():
-		new_form = form.save(commit=False)
-		new_form.user = request.user
-		new_form.save()
+		obj = form.save(commit=False)
+		obj.user = request.user
+		obj.save()
+		return redirect(obj)
 
 	context = {
 		'form': form
 	}
 
 	return render(request, 'wallets/create.html', context=context)
+
 

@@ -14,7 +14,7 @@ def create_view(request):
 
 	if form.is_valid():
 		form.save()
-		return redirect(reverse('wallets:create'))
+		return redirect(reverse('wallets:wallets'))
 
 	return render(request, 'accounts/create.html', context)
 

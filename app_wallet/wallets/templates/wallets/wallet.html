@@ -10,7 +10,19 @@
 {% block main %}
 
 
-	{{wallet}}
+	<h1>
+		{{wallet.name}}
+	</h1>
+	<h3>
+		{{wallet.yang}}
+	</h3>
+	<h3>
+		{{wallet}}
+	</h3>
+	<form method='POST'>
+		{% csrf_token %}
+		<input type='submit' name='delete' value='Delete'>
+	</form>
 
 
 {% endblock %}
