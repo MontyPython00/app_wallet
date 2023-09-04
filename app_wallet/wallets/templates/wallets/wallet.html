@@ -11,17 +11,30 @@
 
 
 	<h1>
-		{{wallet.name}}
-	</h1>
-	<h3>
-		{{wallet.yang}}
-	</h3>
-	<h3>
 		{{wallet}}
+	</h1>
+
+	<h3>
+		Yang: {{wallet.yang}}
+	</h3>
+
+	<h3>
+		<p>
+			Coins:
+		</p>	
+		{% for coin in coins %}
+			<p>
+				{{coin}}
+			</p>
+		{% endfor %}
+		
 	</h3>
 	<form method='POST'>
 		{% csrf_token %}
 		<input type='submit' name='delete' value='Delete'>
+	</form>
+	<form action="{% url 'wallets:update' wallet.id %}">
+		<input type='submit' value='Update'>
 	</form>
 
 
