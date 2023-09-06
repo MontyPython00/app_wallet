@@ -32,6 +32,7 @@ class Wallet(models.Model):
 	user_experience = models.CharField(max_length=12, choices=LEVELS_OF_EXPERIENCE, default='FRESH')
 	yang = models.IntegerField(validators=[MinValueValidator(0)], default=0)
 	active = models.BooleanField(default=False)
+	
 
 	def __str__(self):
 		return f'{self.name}, {self.user_experience} '

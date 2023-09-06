@@ -23,7 +23,7 @@ def user_wallets_view(request):
 @login_required
 def wallet_view(request, wallet_id):
 	wallet = get_object_or_404(Wallet, id=wallet_id)
-	coins = Coin.objects.filter(holder=wallet)
+	coins = Coin.objects.filter(holders=wallet)
 	context = {
 		'wallet': wallet,
 		'coins': coins

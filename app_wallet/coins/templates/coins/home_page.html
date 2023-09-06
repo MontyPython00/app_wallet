@@ -10,7 +10,9 @@
 
 	{% for coin in coins %}
 	<h1>
-		{{coin}}
+		<a href="{{coin.get_absolute_url}}">
+			{{coin}}
+		</a>
 	</h1>
 	{% endfor %}
 

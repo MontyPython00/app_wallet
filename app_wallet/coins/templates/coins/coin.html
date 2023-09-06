@@ -1,0 +1,31 @@
+{% extends 'main_layout.html' %}
+
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block main %}
+
+	<h1>
+		Name: {{coin.name}}({{coin.symbol}})
+	</h1>
+	<h2>
+		Price: {{coin.price}}
+	</h2>
+	<h2>
+		Amount of stocks: {{coin.quantity}}
+	</h2>
+	<h2>
+		Holders: {{coin.amount_of_holders}}
+	</h2>
+
+	<form method='POST'>
+		{% csrf_token %}
+		{{form.as_p}}
+		<input type='submit' value='BUY'>
+	</form>
+
+{% endblock %}
