@@ -1,10 +1,10 @@
 from django import forms
 
-from coins.models import Coin
+from coins.models import Buy
 
 
-class CoinAddHolder(forms.ModelForm):
 
+class BuyForm(forms.ModelForm):
 	class Meta:
-		model = Coin
-		fields = ['quantity']
+		model = Buy
+		fields = ['amount_of_coin', 'total_price']
