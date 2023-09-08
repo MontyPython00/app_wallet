@@ -22,12 +22,20 @@
 		Holders: {{coin.amount_of_holders}}
 	</h2>
 	<h2>
-		Market Cap: {{coin.get_market_cap}}
+		Market Cap: {{coin.market_cap}}
+	</h2>
+	<h2>
+		Stocks left: {{coin.stocks_left}}
 	</h2>
 	<form method='POST'>
 		{% csrf_token %}
 		{{form.as_p}}
 		<input type='submit' value='BUY'>
+	</form>
+	<form method='POST'>
+		{% csrf_token %}
+		{{form2.as_p}}
+		<input type='submit' value='SELL'>
 	</form>
 
 {% endblock %}

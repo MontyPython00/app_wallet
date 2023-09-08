@@ -28,7 +28,7 @@ class CreateWalletForm(forms.ModelForm):
 
 
 
-#If wallet is updated model clean works
+#If wallet is updated model validation works
 class UpdateWalletForm(forms.ModelForm):
 	name = forms.CharField(label='Name', widget=forms.TextInput(attrs={'placeholder': 'Name'}))
 	wallet_id = forms.CharField(label='Wallet ID', widget=forms.TextInput(attrs={'placeholder': 'Id'}))
