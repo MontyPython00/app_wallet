@@ -7,6 +7,7 @@ from coins.models import Buy, Coin, Sell, CoinHolder
 
 
 class BuyForm(forms.ModelForm):
+
 	class Meta:
 		model = Buy
 		fields = ['amount_of_coin', 'total_price']

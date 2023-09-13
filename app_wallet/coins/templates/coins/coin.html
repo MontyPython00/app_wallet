@@ -13,7 +13,7 @@
 		Name: {{coin.name}}({{coin.symbol}})
 	</h1>
 	<h2>
-		Price: {{coin.price}}
+		Price: <span id='price'>{{coin.price}}<span>
 	</h2>
 	<h2>
 		Amount of stocks: {{coin.quantity}}
@@ -45,4 +45,30 @@
 			<input type='submit' name='action' value='SELL'>
 		</form>
 	{% endif %}
+
+	<script>
+		const price_coin = document.getElementById('price')
+		let buyAmountOfCoin = document.getElementById('buy_amount_of_coin')
+		let buyTotalPrice = document.getElementById('buy_total_price')
+		let sellAmountOfCoin = document.getElementById('sell_amount_of_coin')
+		let sellTotalPrice = document.getElementById('sell_total_price')
+		buyAmountOfCoin.addEventListener('keyup', () => {
+			buyTotalPrice.value = price_coin.innerText * buyAmountOfCoin.value
+
+		}) 
+
+		buyTotalPrice.addEventListener('keyup', () => {
+			buyAmountOfCoin.value = buyTotalPrice.value / price_coin.innerText
+		})
+
+		sellAmountOfCoin.addEventListener('keyup', () => {
+			sellTotalPrice.value = price_coin.innerText * sellAmountOfCoin.value
+		})
+
+		sellTotalPrice.addEventListener('keyup', () => {
+			sellAmountOfCoin.value = sellTotalPrice.value / price_coin.innerText
+		})
+
+	</script>
 {% endblock %}
+

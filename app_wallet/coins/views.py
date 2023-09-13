@@ -20,8 +20,8 @@ def coin_detail(request, coin_id):
 	
 	coin = get_object_or_404(Coin, id=coin_id)
 	holder = Wallet.objects.filter(main_wallet__user=request.user, active=True).first()	#AS DEFAULT NONE WALLET IS ACTIVE DEAL WITH IT #IF WALLET DOESNT EXISTS SAME PROBLEM
-	form = BuyForm(request.POST or None, coin_identifier_buy=coin_id, wallet_buy=holder)
-	form2 = SellForm(request.POST or None, coin_identifier_sell=coin_id, wallet_sell=holder)
+	form = BuyForm(request.POST or None, coin_identifier_buy=coin_id, wallet_buy=holder, auto_id='buy_%s')
+	form2 = SellForm(request.POST or None, coin_identifier_sell=coin_id, wallet_sell=holder, auto_id='sell_%s')
 	if form.is_valid() and 'BUY' == request.POST.get('action'):
 
 		buy_obj = form.save(commit=False)
