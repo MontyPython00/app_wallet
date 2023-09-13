@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 
 from wallets.models import Wallet, MainWallet
 from wallets.forms import CreateWalletForm, UpdateWalletForm
-from coins.models import Coin
+from coins.models import CoinHolder
 
 # Create your views here.
 
@@ -23,14 +23,19 @@ def user_wallets_view(request):
 @login_required
 def wallet_view(request, wallet_id):
 	wallet = get_object_or_404(Wallet, id=wallet_id)
-	coins = Coin.objects.filter(holders=wallet)
+	coins = CoinHolder.objects.filter(holder_wallet=wallet)
 	context = {
 		'wallet': wallet,
 		'coins': coins
 	} 
-	if request.POST.get('delete') != None:
+	if request.POST.get('delete') == 'Delete':
 		wallet.delete()
 		return redirect(reverse('wallets:wallets'))
+
+	elif request.POST.get('Boost') == '+':
+		wallet.yang += 1000
+		wallet.save()
+		return redirect(reverse('wallets:wallet', kwargs={'wallet_id': wallet_id}))
 
 	return render(request, 'wallets/wallet.html', context=context)
 

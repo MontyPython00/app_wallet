@@ -27,15 +27,22 @@
 	<h2>
 		Stocks left: {{coin.stocks_left}}
 	</h2>
-	<form method='POST'>
-		{% csrf_token %}
-		{{form.as_p}}
-		<input type='submit' value='BUY'>
-	</form>
-	<form method='POST'>
-		{% csrf_token %}
-		{{form2.as_p}}
-		<input type='submit' value='SELL'>
-	</form>
+	{% if wallet_dont_exists %}
+		Wallet is not active?
+		<p> 
+			<a href="{% url 'wallets:wallets' %}"> Click here </a>
+		</p> 
 
+	{% else %}
+		<form method='POST'>
+			{% csrf_token %}
+			{{form.as_p}}
+			<input type='submit' name='action' value='BUY'>
+		</form>
+		<form method='POST'>
+			{% csrf_token %}
+			{{form2.as_p}}
+			<input type='submit' name='action' value='SELL'>
+		</form>
+	{% endif %}
 {% endblock %}

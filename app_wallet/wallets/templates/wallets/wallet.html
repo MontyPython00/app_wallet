@@ -15,7 +15,8 @@
 	</h1>
 
 	<h3>
-		Yang: {{wallet.yang}}
+		Yang: {{wallet.yang}} | Wallet has not enough money? Add demo Yang 
+		<form method='POST' style="display:inline-block;"> {% csrf_token %} <input type='submit' name='Boost' value='+'> </form> 
 	</h3>
 	<h3>
 		Active: {{wallet.active}}
@@ -27,8 +28,10 @@
 		</p>	
 		{% for coin in coins %}
 			<p>
-				{{coin}}
+				{{coin.coin}}, Avg buy: {{coin.avg_buy_price}} Amount: {{coin.amount_of_coin}}
 			</p>
+		{% empty %}
+			You have 0 coins, check available coins! <a href="{% url 'coins:coins' %}"> Click here </a>
 		{% endfor %}
 		
 	</h3>
